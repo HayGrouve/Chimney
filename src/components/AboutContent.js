@@ -5,6 +5,21 @@ import komin2 from '../assets/images/komin-2.jpg';
 import komin3 from '../assets/images/komin-3.jpg';
 import vutre from '../assets/images/vutre.jpg';
 import otvun from '../assets/images/otvun.jpg';
+import chimney1 from '../assets/images/1.jpg';
+import chimney2 from '../assets/images/2.jpg';
+import chimney3 from '../assets/images/3.jpg';
+import chimney4 from '../assets/images/4.jpg';
+import chimney5 from '../assets/images/5.jpg';
+import chimney6 from '../assets/images/6.jpg';
+import chimney7 from '../assets/images/7.jpg';
+import chimney8 from '../assets/images/8.jpg';
+import chimney9 from '../assets/images/9.jpg';
+import chimney10 from '../assets/images/10.jpg';
+import chimney11 from '../assets/images/11.jpg';
+import chimney12 from '../assets/images/12.jpg';
+import chimney13 from '../assets/images/13.jpg';
+import chimney14 from '../assets/images/14.jpg';
+import chimney15 from '../assets/images/15.jpg';
 
 function AboutContent() {
   return (
@@ -65,6 +80,140 @@ function AboutContent() {
         </div>
         <div className="card bg-dark">
           <img src={otvun} className="card-img-top" alt="Logo" height="400px" />
+        </div>
+      </div>
+      <div className="img-holder mt-3">
+        <div className="card bg-dark">
+          <img
+            src={chimney1}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney2}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney3}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+      </div>
+
+      <div className="img-holder mt-3">
+        <div className="card bg-dark">
+          <img
+            src={chimney4}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney5}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney6}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+      </div>
+
+      <div className="img-holder mt-3">
+        <div className="card bg-dark">
+          <img
+            src={chimney7}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney8}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney9}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+      </div>
+
+      <div className="img-holder mt-3">
+        <div className="card bg-dark">
+          <img
+            src={chimney10}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney11}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney12}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+      </div>
+
+      <div className="img-holder mt-3">
+        <div className="card bg-dark">
+          <img
+            src={chimney13}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney14}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
+        </div>
+        <div className="card bg-dark">
+          <img
+            src={chimney15}
+            className="card-img-top"
+            alt="Logo"
+            height="400px"
+          />
         </div>
       </div>
     </div>
