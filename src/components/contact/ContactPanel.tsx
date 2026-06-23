@@ -19,7 +19,7 @@ export function ContactPanel() {
     <Card className="mx-auto max-w-md">
       <CardHeader>
         <CardTitle>Контакти</CardTitle>
-        <CardDescription>Свържете се с мен</CardDescription>
+        <CardDescription>Ще отговоря възможно най-бързо</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div>

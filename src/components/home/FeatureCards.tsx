@@ -25,8 +25,8 @@ export function FeatureCards() {
         <CardHeader>
           <CardTitle>За мен</CardTitle>
           <CardDescription>
-            Професионален коминочистач съм от 20 години, работил съм в няколко
-            държави, работя бързо и качествено...
+            Професионален коминочистач с над 20 години опит в България и в
+            чужбина. Работя бързо, чисто и с внимание към детайла.
           </CardDescription>
         </CardHeader>
         <CardFooter>
@@ -48,8 +48,8 @@ export function FeatureCards() {
         <CardHeader>
           <CardTitle>Цени и срокове</CardTitle>
           <CardDescription>
-            Всеки комин изисква различен подход, който налага повече/по-малко
-            време и ресурси. Свържете се с мен, с радост ще помогна!
+            Всяка поръчка е индивидуална — сроковете и цената зависят от
+            състоянието на комина. Свържете се с мен за консултация.
           </CardDescription>
         </CardHeader>
         <CardFooter>
