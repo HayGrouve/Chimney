@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://komini-sofia.com/sitemap.xml
