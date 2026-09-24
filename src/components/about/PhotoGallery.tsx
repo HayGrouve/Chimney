@@ -1,130 +1,72 @@
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Expand } from "lucide-react";
+import { Reveal } from "@/components/common/Reveal";
 import { galleryImages } from "@/data/gallery-images";
-
-function preloadImage(src: string) {
-  const img = new Image();
-  img.src = src;
-}
+import { Lightbox } from "./Lightbox";
 
 export function PhotoGallery() {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const lightboxRef = useRef<HTMLDivElement>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const pushedHistoryEntry = useRef(false);
 
-  const goTo = useCallback((direction: -1 | 1) => {
-    setSelectedIndex((current) => {
-      if (current === null) return null;
-      return (
-        (current + direction + galleryImages.length) % galleryImages.length
-      );
-    });
-  }, []);
+  // The open photo lives in the URL (?photo=N) so the back button closes the lightbox.
+  const photoParam = searchParams.get("photo");
+  const parsed = photoParam === null ? NaN : Number(photoParam);
+  const selectedIndex =
+    Number.isInteger(parsed) && parsed >= 0 && parsed < galleryImages.length ? parsed : null;
 
-  useEffect(() => {
-    if (selectedIndex === null) return;
-
-    const prev =
-      galleryImages[
-        (selectedIndex - 1 + galleryImages.length) % galleryImages.length
-      ];
-    const next =
-      galleryImages[(selectedIndex + 1) % galleryImages.length];
-
-    preloadImage(prev.src);
-    preloadImage(next.src);
-  }, [selectedIndex]);
-
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-
-    event.preventDefault();
-    (
-      event as KeyboardEvent & { preventBaseUIHandler?: () => void }
-    ).preventBaseUIHandler?.();
-    goTo(event.key === "ArrowLeft" ? -1 : 1);
-    lightboxRef.current?.focus();
+  const openPhoto = (index: number) => {
+    pushedHistoryEntry.current = true;
+    setSearchParams({ photo: String(index) }, { preventScrollReset: true });
   };
 
-  const selected =
-    selectedIndex !== null ? galleryImages[selectedIndex] : null;
+  const changePhoto = (index: number) =>
+    setSearchParams({ photo: String(index) }, { replace: true, preventScrollReset: true });
+
+  const closePhoto = () => {
+    if (pushedHistoryEntry.current) {
+      pushedHistoryEntry.current = false;
+      navigate(-1);
+    } else {
+      setSearchParams({}, { replace: true, preventScrollReset: true });
+    }
+  };
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="columns-2 gap-3 md:columns-3 md:gap-4">
         {galleryImages.map((image, index) => (
-          <button
-            key={image.src}
-            type="button"
-            onClick={() => setSelectedIndex(index)}
-            className="group cursor-pointer overflow-hidden rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-ring"
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="h-56 w-full object-cover transition-transform group-hover:scale-105"
-            />
-          </button>
+          <Reveal key={image.src} delay={(index % 3) * 80} className="mb-3 break-inside-avoid md:mb-4">
+            <button
+              type="button"
+              onClick={() => openPhoto(index)}
+              className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl bg-card ring-1 ring-foreground/10 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full transition-transform duration-700 group-hover:scale-105"
+              />
+              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="absolute right-3 bottom-3 flex size-9 translate-y-2 items-center justify-center rounded-full bg-background/80 opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                <Expand className="size-4" />
+              </span>
+            </button>
+          </Reveal>
         ))}
       </div>
 
-      <Dialog
-        open={selectedIndex !== null}
-        onOpenChange={(open) => {
-          if (!open) setSelectedIndex(null);
-        }}
-      >
-        <DialogContent
-          className="max-w-4xl border-border bg-card p-2 data-open:animate-none data-closed:animate-none sm:max-w-4xl"
-          overlayClassName="bg-black/60 backdrop-blur-none data-open:animate-none data-closed:animate-none"
-          onKeyDown={handleKeyDown}
-        >
-          <DialogTitle className="sr-only">
-            {selected?.alt ?? "Гalerия"}
-          </DialogTitle>
-          {selected && (
-            <div
-              ref={lightboxRef}
-              tabIndex={-1}
-              className="relative outline-none"
-            >
-              <img
-                src={selected.src}
-                alt={selected.alt}
-                decoding="async"
-                className="max-h-[80vh] w-full rounded-md object-contain"
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center">
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  tabIndex={-1}
-                  onClick={() => goTo(-1)}
-                  aria-label="Предишна снимка"
-                >
-                  <AiOutlineLeft />
-                </Button>
-              </div>
-              <div className="absolute inset-y-0 right-0 flex items-center">
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  tabIndex={-1}
-                  onClick={() => goTo(1)}
-                  aria-label="Следваща снимка"
-                >
-                  <AiOutlineRight />
-                </Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+      <Lightbox
+        images={galleryImages}
+        index={selectedIndex}
+        onIndexChange={changePhoto}
+        onClose={closePhoto}
+      />
     </>
   );
 }
