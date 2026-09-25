@@ -43,7 +43,6 @@
 
   --animate-rise: rise var(--rise-duration, 9s) linear infinite;
   --animate-flicker: flicker 4s ease-in-out infinite;
-  --animate-marquee: marquee 40s linear infinite;
 }
 
 :root,
@@ -189,15 +188,6 @@
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 /* Scroll-reveal: elements start hidden and fade up once visible */
 [data-reveal] {
   opacity: 0;
@@ -222,8 +212,7 @@
     transition: none;
   }
   .animate-rise,
-  .animate-flicker,
-  .animate-marquee {
+  .animate-flicker {
     animation: none !important;
   }
   .animate-rise {

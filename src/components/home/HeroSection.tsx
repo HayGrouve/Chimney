@@ -5,12 +5,6 @@ import { Embers } from "@/components/common/Embers";
 import heroBg from "@/assets/images/jumbotron-img.jpg";
 import selfie from "@/assets/images/selfie.jpg";
 
-const highlights = [
-  { value: "20+", label: "години опит" },
-  { value: "0", label: "прах в дома" },
-  { value: "1", label: "обаждане е достатъчно" },
-];
-
 export function HeroSection() {
   return (
     <section className="grain relative flex items-center overflow-hidden bg-soot">
@@ -53,20 +47,6 @@ export function HeroSection() {
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-foreground/10 pt-6 animate-in fade-in duration-1000 [animation-delay:500ms] [animation-fill-mode:both]">
-              {highlights.map((item) => (
-                <div key={item.label}>
-                  <dt className="sr-only">{item.label}</dt>
-                  <dd className="font-display text-2xl font-semibold text-foreground md:text-3xl">
-                    {item.value}
-                  </dd>
-                  <dd className="mt-1 text-xs leading-snug text-muted-foreground md:text-sm">
-                    {item.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
           {/* Personal card */}
