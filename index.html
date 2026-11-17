@@ -3,6 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Consent Mode v2: must run before the Google tag. Denied until the visitor
+         accepts in the cookie banner; a stored choice ("cookie-consent", see
+         src/lib/analytics.ts) is applied straight away on later visits. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        wait_for_update: 500,
+      });
+      try {
+        if (localStorage.getItem("cookie-consent") === "granted") {
+          gtag("consent", "update", {
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
+            analytics_storage: "granted",
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- GOOGLE TAG (AW-17951023799): paste the Option 2 snippet from Google Ads here. -->
+
     <title>Коминочистач | Почистване и отпушване на комини</title>
     <meta
       name="description"
