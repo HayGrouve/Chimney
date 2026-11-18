@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Analytics } from "@/components/layout/Analytics";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 import { MobileCallBar } from "@/components/layout/MobileCallBar";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -31,6 +33,8 @@ export default function App() {
         <SiteFooter />
         <MobileCallBar />
       </div>
+      <CookieBanner />
+      <Analytics />
     </BrowserRouter>
   );
 }

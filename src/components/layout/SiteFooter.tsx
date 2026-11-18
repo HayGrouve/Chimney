@@ -3,6 +3,7 @@ import { ArrowUpRight, Phone } from "lucide-react";
 import { FaFacebookF } from "react-icons/fa";
 import { contact, navLinks, services } from "@/data/site";
 import { BrandMark } from "./BrandMark";
+import { openCookieSettings } from "./CookieBanner";
 
 export function SiteFooter() {
   return (
@@ -68,12 +69,21 @@ export function SiteFooter() {
       <div className="relative border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-5 py-6 text-xs text-muted-foreground md:flex-row md:items-center md:px-6">
           <p>© {new Date().getFullYear()} Коминочистач · {contact.name}</p>
-          <a
-            href={contact.phoneHref}
-            className="inline-flex items-center gap-1 transition-colors hover:text-primary"
-          >
-            {contact.phoneDisplay} <ArrowUpRight className="size-3" />
-          </a>
+          <div className="flex items-center gap-5">
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="transition-colors hover:text-primary"
+            >
+              Бисквитки
+            </button>
+            <a
+              href={contact.phoneHref}
+              className="inline-flex items-center gap-1 transition-colors hover:text-primary"
+            >
+              {contact.phoneDisplay} <ArrowUpRight className="size-3" />
+            </a>
+          </div>
         </div>
       </div>
 
